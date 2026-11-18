@@ -101,7 +101,9 @@ git diff --stat -- functionsEMAS
 
 `repo-check` 退出码 0。它打印两条警告：根目录 AppID 仍是上游小程序；`config.js` 仍有上游 EMAS 空间和校园地图中心。警告按设计不导致失败。脚本报告已注册页面 53 个。`functionsEMAS` 的 diff 为空。
 
-没有运行 `npm run build:npm`、`npm run preview`、微信开发者工具、ESLint，也没有运行 `wb_code/` 里的云函数桩测试。GitHub Actions 要等分支推上去之后才有记录；推送前不能把 CI 写成已经通过。
+没有运行 `npm run build:npm`、`npm run preview`、微信开发者工具、ESLint，也没有运行 `wb_code/` 里的云函数桩测试。
+
+提交 `85f4ff3` 推上 `cursor/baseline-docs-repo-checks-35f0` 之后，GitHub Actions 的 `repo-check` 两次都成功：push 运行 `44229332571`，pull_request 运行 `44229355453`。以后的新提交以新的 Actions 记录为准。
 
 ## 和上游同步时
 
