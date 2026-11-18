@@ -1,0 +1,18 @@
+name: repo-check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'cursor/**'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 静态检查（不访问云端，不使用密钥）
+        run: node scripts/repo-check.mjs

@@ -6,7 +6,7 @@
     },
     {
       "action": "allow",
-      "page": "pages/recognize/recognize"
+      "page": "pages/packageA/pages/recognize/recognize"
     },
     {
       "action": "allow",

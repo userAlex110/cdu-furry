@@ -2,8 +2,7 @@
 import config from "../config";
 
 function getDate(date) {
-  date = date ? new Date(date) : new Date();
-  return new Date()
+  return date ? new Date(date) : new Date();
 }
 
 

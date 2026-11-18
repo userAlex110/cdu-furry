@@ -23,7 +23,8 @@ miniprogram/appSecret.js
 .claude
 *.bak
 functionsEMAS/*.zip
-docs/
+# 项目文档在 docs/ 入库。仅私人草稿放 docs/private/。
+docs/private/
 private.*.key
 preview-qrcode.png
 badgeAssets/*
