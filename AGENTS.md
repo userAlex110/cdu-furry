@@ -19,7 +19,7 @@
 - 读 `functionsEMAS/`，把风险写进文档或 Issue。
 - 改文档、Issue/PR 模板、`CONTRIBUTING.md`、本文件、以及不触达云端的静态检查。
 - 在有调用点证据时，修前端里边界清楚、可用本地检查验证的缺陷。
-- 用独立分支和 Pull Request。PR 的目标仓库是 `userAlex110/cdu-furry`。
+- 用独立分支和 Pull Request。PR 的目标仓库是 `userAlex110/cdu-furry`。新工作先在本 fork 写 Issue 和验收，再改代码。2026-11-18 的第一份 PR 是先有分支、后补记录的例外，见 `docs/development-workflow.md`。
 
 ## 禁止
 

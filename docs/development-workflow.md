@@ -22,13 +22,15 @@
 
 ## 一次标准循环
 
-1. 在 fork 上开 Issue，用 `.github/ISSUE_TEMPLATE/` 里的模板。
+今后按这个顺序。2026-11-18 的第一份 PR 是例外，原因写在下一节。
+
+1. 在本 fork 开 Issue：https://github.com/userAlex110/cdu-furry/issues 。用 `.github/ISSUE_TEMPLATE/` 。写清目标、不做的事和验收条件。成大的需求不要开到上游。
 2. 更新本地 `master`，从它拉出新分支。
 3. 在分支上改完，运行 `node scripts/repo-check.mjs`。
 4. 提交并推送该分支：`git push -u origin <分支名>`。
 5. 打开指向 `userAlex110/cdu-furry` 的 `master` 的 PR，正文写上议题编号。
-6. 看 CI。失败就在同一分支继续提交，PR 会自动带上新提交。
-7. 审查者阅读差异。通过之后由审查者合并。合并前作者不合并。
+6. 看 CI。失败就在同一分支继续提交，PR 会自动带上新提交。`repo-check` 通过只说明仓库文件符合静态规则，不说明微信开发者工具或真机已经通过。
+7. 等审查。由用户决定是否合并。作者不自己点合并。合并只表示提交进入 `master`，不表示已经部署、提审或开通云资源。
 
 ```bash
 git checkout master
@@ -46,39 +48,27 @@ git push -u origin cursor/short-name-35f0
 
 工作分支是 `cursor/baseline-docs-repo-checks-35f0`。没有把提交推到 `master`。
 
-计划中的两张议题没有建成。`gh issue list --repo userAlex110/cdu-furry` 返回 “the repository has disabled issues”。随后 `POST /repos/userAlex110/cdu-furry/issues` 返回 HTTP 410，`Issues has been disabled in this repository`。`gh repo edit userAlex110/cdu-furry --enable-issues` 返回 HTTP 403，当前集成令牌不能改仓库功能开关。按约定没有向上游开 Issue。
+当时本 fork 的 Issues 是关闭的。`gh issue list --repo userAlex110/cdu-furry` 显示仓库禁用了 Issues。`POST /repos/userAlex110/cdu-furry/issues` 返回 HTTP 410，`Issues has been disabled in this repository`。改仓库功能开关返回 HTTP 403。没有向上游开 Issue，也没有改仓库权限。
 
-待人工：仓库管理员打开 `https://github.com/userAlex110/cdu-furry/settings`，在 General → Features 勾选 Issues。打开之后可以把下面两段原文建成议题，再在 PR 里补上 `Fixes #编号`。模板已经放进仓库，打开功能后新建议题会看到它们。
+用户稍后在同一天打开了 Issues。再次核对：`hasIssuesEnabled` 为 true，`gh issue list --state all` 为空。仓库里当时唯一的编号是 PR #1，它不是一条独立议题。
 
-### 拟议题 A：基线审计与接手文档
+补录一条综合议题时，当前集成身份 `cursor` 调用创建接口返回 HTTP 403，`Resource not accessible by integration`。GraphQL 的 `createIssue` 同样拒绝。因此没有议题 URL，不能把 PR 写成 `Fixes #编号`。下面这段就是本来要写入那条议题的全文，避免再拆成多条。
 
-标题：基线审计：写清现行 EMAS 架构，供新的 AI 和初学者接手
+### 未能建成的综合议题正文
 
-要完成：
+标题：事后补录：基线文档、成本调研与仓库静态检查
 
-- 按当前代码写技术总览、开发流程、优化路线和架构决策。
-- 区分成大毛茸茸和上游中大猫谱，保留 MPL-2.0 与作者归属。
-- 写明前端调用链、集合、权限、配置和隐私边界。
-- 标出 Laf 已经退出、EMAS + COS 仍是现行实现、CloudBase 尚未接入。
-- 不编造价格。价格调研未完成就保持待整合。
+目标：让后来的人能从文档读懂现行代码、协作方式和后端约束，并有一条不联网的静态检查。写清 EMAS 停服和公开价格，不开始迁移。
 
-验收：新的 AI 只读 `docs/`、`AGENTS.md` 和 `CONTRIBUTING.md`，就能知道什么能改、后端在哪、哪些验证必须等人。
+范围里已经做的：四份接手文档、`docs/backend-cost-research.md`、`docs/backend-cost-sources.md`、`CONTRIBUTING.md`、`AGENTS.md`、Issue/PR 模板、`scripts/repo-check.mjs`，以及 sitemap 识猫路径和 `getDate` 入参这两处小修。
 
-### 拟议题 B：非后端基础质量
+范围里不做的：不改 `functionsEMAS/`，不迁移，不创建云环境，不部署，不购买，不绑定真实 AppID，不向上游发议题，不由作者合并。
 
-标题：仓库规范与本地静态检查，并修两处有证据的前端缺陷
+验收：文档区分成大与上游并保留 MPL-2.0；写明 2026-11-01 停止新购、2027-09-30 停服，COS 不受影响，FC 不是整套替代；`node scripts/repo-check.mjs` 退出码为 0；PR 没有后端差异；本文写明自己是事后补录。用户是否合并由用户决定，不算作者已完成的验收。
 
-要完成：
+测试证据：提交 `2b26bad` 上本地检查通过；`functionsEMAS/` 差异为空；CI 成功，push 运行 `44229867103`，pull_request 运行 `44229873725`。PR https://github.com/userAlex110/cdu-furry/pull/1 在补录时为 open，且未合并。
 
-- Issue 模板、PR 模板、`CONTRIBUTING.md`、`AGENTS.md`。
-- 让 `docs/` 可以被 git 跟踪。
-- 增加不联网的 `scripts/repo-check.mjs` 和 GitHub Actions。
-- 修正 `sitemap.json` 里已经不存在的识猫路径。
-- 修正 `getDate` 忽略参数的实现。现有调用都不传参，所以页面上看得到的时间不变。
-
-明确不做：改 `functionsEMAS/`、换后端、改品牌文案、大改界面、升级依赖、绑定真实 AppID。
-
-验收：`node scripts/repo-check.mjs` 退出码为 0；PR 差异里没有 `functionsEMAS/`。
+未验证和待定：微信开发者工具、真机、真实 AppID、管理员扫码、控制台权限、资源包成交价、后端选型。假设月费不是账单。免费档和 19.9 元/月不是永久价格。
 
 ## 审查和合并
 
@@ -88,7 +78,7 @@ git push -u origin cursor/short-name-35f0
 2. `git diff master...HEAD --stat -- functionsEMAS` 应为空。
 3. 新文档没有上游坐标，没有真实 Secret，许可证文件还在。
 
-合并用 GitHub 的 Merge 按钮，由审查者操作。不要在本地把功能分支合并进 `master` 再强推。
+合并用 GitHub 的 Merge 按钮，由用户决定。作者不自己合并，也不要在本地把功能分支合并进 `master` 再强推。合并进入 `master` 不等于部署、提审或开通云资源。CI 绿灯不等于微信真机已经通过。
 
 CI 配置在 `.github/workflows/repo-check.yml`。它在 Pull Request 上跑，也在 `cursor/**` 分支的 push 上跑。`master` 的直接 push 不在触发列表里，因为正常代码从 PR 进来。
 
@@ -105,7 +95,7 @@ git diff --stat -- functionsEMAS
 
 没有运行 `npm run build:npm`、`npm run preview`、微信开发者工具、ESLint，也没有运行 `wb_code/` 里的云函数桩测试。
 
-提交 `85f4ff3` 推上 `cursor/baseline-docs-repo-checks-35f0` 之后，GitHub Actions 的 `repo-check` 两次都成功：push 运行 `44229332571`，pull_request 运行 `44229355453`。以后的新提交以新的 Actions 记录为准。
+提交 `85f4ff3` 的 GitHub Actions `repo-check` 成功：push 运行 `44229332571`，pull_request 运行 `44229355453`。提交 `2b26bad` 同样成功：push 运行 `44229867103`，pull_request 运行 `44229873725`。以后的新提交以新的 Actions 记录为准。静态检查通过不等于微信真机通过。
 
 ## 和上游同步时
 

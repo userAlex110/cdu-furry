@@ -14,14 +14,14 @@
 
 ## 建议顺序
 
-1. 在本 fork 开 Issue，写清要做什么、不做什么、怎样验收。
+1. 在本 fork 开 Issue，写清要做什么、不做什么、怎样验收。入口是 https://github.com/userAlex110/cdu-furry/issues 。
 2. 从最新的 `master` 拉分支。分支只包含这一件工作。
 3. 在分支上改代码并提交。提交说明写给人看，说明改了什么、为什么。
-4. 运行 `node scripts/repo-check.mjs`。它不访问云端。
+4. 运行 `node scripts/repo-check.mjs`。它不访问云端，通过也不表示真机已经可用。
 5. 推送分支，打开指向 `master` 的 Pull Request，并在正文写上 Issue 编号。
-6. 等审查。审查通过后由人合并。合并前不要点 Merge。
+6. 等审查。由用户决定是否合并。作者不点 Merge。合并只把提交带进 `master`，不表示部署、提审或开通云资源。
 
-若 GitHub 上这个 fork 的 Issues 仍是关闭状态，先在仓库 Settings → General → Features 里打开 Issues，再补建议题。没有议题编号时，PR 正文要贴上议题全文，避免工作对不上。
+2026-11-18 的第一份工作是例外：当时 Issues 关闭，分支和 PR 先出现。用户打开 Issues 之后，自动化身份创建补录议题被拒绝（HTTP 403）。细节在 `docs/development-workflow.md`。不要为了补这个权限去改仓库设置。
 
 ## 本地检查
 
