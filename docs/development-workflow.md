@@ -52,23 +52,16 @@ git push -u origin cursor/short-name-35f0
 
 用户稍后在同一天打开了 Issues。再次核对：`hasIssuesEnabled` 为 true，`gh issue list --state all` 为空。仓库里当时唯一的编号是 PR #1，它不是一条独立议题。
 
-补录一条综合议题时，当前集成身份 `cursor` 调用创建接口返回 HTTP 403，`Resource not accessible by integration`。GraphQL 的 `createIssue` 同样拒绝。因此没有议题 URL，不能把 PR 写成 `Fixes #编号`。下面这段就是本来要写入那条议题的全文，避免再拆成多条。
+补录综合议题时，云端开发环境的集成身份调用创建接口返回 HTTP 403，`Resource not accessible by integration`。GraphQL 的 `createIssue` 同样拒绝。没有改权限，也没有再开第二条。
 
-### 未能建成的综合议题正文
+之后由会话里的 GitHub 工具补建了这一条。它是事后补录：先有分支和 PR #1，后有 Issue #2。
 
-标题：事后补录：基线文档、成本调研与仓库静态检查
+- 标题：补录：项目技术基线、成本调研与规范开发流程
+- 地址：https://github.com/userAlex110/cdu-furry/issues/2
+- 创建时间：2026-11-18T03:58:36Z，作者 `userAlex110`，当时状态为 open
+- 关联 PR：https://github.com/userAlex110/cdu-furry/pull/1
 
-目标：让后来的人能从文档读懂现行代码、协作方式和后端约束，并有一条不联网的静态检查。写清 EMAS 停服和公开价格，不开始迁移。
-
-范围里已经做的：四份接手文档、`docs/backend-cost-research.md`、`docs/backend-cost-sources.md`、`CONTRIBUTING.md`、`AGENTS.md`、Issue/PR 模板、`scripts/repo-check.mjs`，以及 sitemap 识猫路径和 `getDate` 入参这两处小修。
-
-范围里不做的：不改 `functionsEMAS/`，不迁移，不创建云环境，不部署，不购买，不绑定真实 AppID，不向上游发议题，不由作者合并。
-
-验收：文档区分成大与上游并保留 MPL-2.0；写明 2026-11-01 停止新购、2027-09-30 停服，COS 不受影响，FC 不是整套替代；`node scripts/repo-check.mjs` 退出码为 0；PR 没有后端差异；本文写明自己是事后补录。用户是否合并由用户决定，不算作者已完成的验收。
-
-测试证据：提交 `2b26bad` 上本地检查通过；`functionsEMAS/` 差异为空；CI 成功，push 运行 `44229867103`，pull_request 运行 `44229873725`。PR https://github.com/userAlex110/cdu-furry/pull/1 在补录时为 open，且未合并。
-
-未验证和待定：微信开发者工具、真机、真实 AppID、管理员扫码、控制台权限、资源包成交价、后端选型。假设月费不是账单。免费档和 19.9 元/月不是永久价格。
+议题正文以 GitHub 上的 #2 为准。PR 用链接关联它，不写 `Fixes #2`，合并时不会因此自动关闭。议题在用户审查前保持打开。作者不合并。合并进入 `master` 不等于部署。静态检查通过不等于微信真机通过。
 
 ## 审查和合并
 
