@@ -3,6 +3,7 @@
   "description": "笃行猫谱微信小程序工程（miniprogram 前端 + functionsEMAS 云函数 + wb_code 工具脚本）",
   "private": true,
   "scripts": {
+    "check": "node scripts/repo-check.mjs",
     "build:npm": "node wb_code/buildNpm.mjs",
     "preview": "node wb_code/preview.mjs"
   },

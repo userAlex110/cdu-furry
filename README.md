@@ -1,3 +1,16 @@
+# 成大毛茸茸（fork）
+
+本仓库是「成大毛茸茸」校园猫狗微信小程序，fork 自 [sysucats/zhongdamaopu](https://github.com/sysucats/zhongdamaopu)（中大猫谱 / 笃行猫谱）。写这份说明时，本 fork 的 `master` 与上游提交 `7ba22e5` 相同。
+
+- 许可仍是仓库根目录的 MPL-2.0。可以修改代码，同时保留该许可证和上游作者归属。下面「开发团队」一节属于上游项目。
+- 上游的猫狗档案、地图点位、AppID、EMAS 空间和对象存储，都不是本项目已经获授权的数据。新的文档、Issue 和对外材料不要转载具体坐标。
+- 本项目的问题记在本 fork。不要把成大的 Issue 开到上游仓库，也不要联系上游维护者代为部署或审核。
+- 接手请先读 `docs/technical-overview.md`、`docs/development-workflow.md`、`docs/optimization-roadmap.md`、`docs/architecture-decisions.md`。协作约定在 `CONTRIBUTING.md`，给 AI 的边界在 `AGENTS.md`。
+
+下面保留上游 README 原文，方便对照功能说明和致谢。
+
+---
+
 # :pencil:中大猫谱（笃行猫谱）
 
 *——拍照记录校园内猫猫的成长轨迹* :cat::smiley_cat::heart_eyes_cat:
