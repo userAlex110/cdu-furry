@@ -1,6 +1,8 @@
 # 技术总览
 
-这份文档给下一任开发者和下一任 AI 接手用。结论都来自 2026-11-18 对 `userAlex110/cdu-furry` 工作区的直接阅读，基线提交是 `7ba22e5`（与上游 `sysucats/zhongdamaopu` 的 `master` 相同）。后端选型还没定，下文描述的是仓库里的现行代码。
+这份文档给下一任开发者和下一任 AI 接手用。结论都来自 2026-11-18 对 `userAlex110/cdu-furry` 工作区的直接阅读，基线提交是 `7ba22e5`（与上游 `sysucats/zhongdamaopu` 的 `master` 相同）。下文描述的是仓库里的现行代码。后端选型还没定。
+
+**新环境不要按上游手册去开通 EMAS。** 阿里云 2026-10-26 的公告写明：2026-11-01 起 EMAS Serverless 停止新购和新空间，存量服务到 2027-09-30 停服。成大没有自己的存量空间。腾讯云 COS 不受这份公告影响。函数计算 FC 也不是这套数据库加登录的替代。部署手册、README 里的开通段落和 `pages/debug/deployTip` 只能当历史说明。价格和代码迁移量见 `docs/backend-cost-research.md`。
 
 ## 仓库身份
 
@@ -29,7 +31,7 @@
 | `maintenance/` | 上游的审查清单、发版笔记、待办。里面的后端问题这次只引用，不修改代码 |
 | `readme/` | 上游 README 用的校园小程序二维码图片 |
 | `scripts/repo-check.mjs` | 本 fork 新增的本地静态检查 |
-| `docs/` | 本 fork 的接手文档 |
+| `docs/` | 本 fork 的接手文档。成本见 `backend-cost-research.md`，出处见 `backend-cost-sources.md` |
 
 `miniprogram/app.json` 注册了 53 个页面，页面四件套（js/json/wxml/wxss）都在。页面脚本一共 59 个，多出来的是被页面引用的辅助脚本，例如 `lock.js`、`desc.js`。
 
@@ -39,7 +41,9 @@
 
 Laf 已经退出运行路径。`git log` 里有 `62401b0 chore: 清除 Laf 托管遗留`，仓库中没有 `functionsLaf/` 或 Laf 云函数目录。还留着的字样是历史说明：根 README 提到 Laf 不再维护、`devTeam.js` 的更新日志、`info.js` 里一条旧文档提示。`pages/debug/debug.js` 仍调用 `wx.cloud.callFunction`（`deleteRawPhoto`、`imProcess`）。这是调试页上的旧接口，这两个函数不在 `functionsEMAS/` 里，主流程不走它。
 
-CloudBase 没有接入。前端初始化的是 EMAS SDK，不是 `wx.cloud.init`。官方 CloudBase Skill 只作以后的参考，见 `docs/architecture-decisions.md`。
+CloudBase 没有接入。前端初始化的是 EMAS SDK，不是 `wx.cloud.init`。国内开发助手可以已经认证，仓库里仍然没有 CloudBase 环境。官方 Skill 只作参考，见 `docs/architecture-decisions.md`。
+
+这套 EMAS 代码解释的是「现在程序怎么写的」。它不能被部署成成大的新空间：2026-11-01 之后官方已停止新建服务空间。COS 的上传和读取代码可以继续阅读，公告没有下线 COS。真正要换后端时要改的调用面，写在成本文档里，不在这一轮动手。
 
 有两个云函数名会被客户端调用：
 

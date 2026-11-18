@@ -39,6 +39,8 @@ const requiredDocs = [
   'docs/development-workflow.md',
   'docs/optimization-roadmap.md',
   'docs/architecture-decisions.md',
+  'docs/backend-cost-research.md',
+  'docs/backend-cost-sources.md',
   'CONTRIBUTING.md',
   'AGENTS.md',
   '.github/PULL_REQUEST_TEMPLATE.md',

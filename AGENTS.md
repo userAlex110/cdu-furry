@@ -4,12 +4,13 @@
 
 ## 项目是什么
 
-成大毛茸茸是校园猫狗微信小程序。代码 fork 自 `sysucats/zhongdamaopu`（中大猫谱 / 笃行猫谱），许可 MPL-2.0。现行后端是阿里云 EMAS Serverless，照片走腾讯云 COS。CloudBase 只是尚未决定的候选，代码没有接入 CloudBase 数据库或存储。
+成大毛茸茸是校园猫狗微信小程序。代码 fork 自 `sysucats/zhongdamaopu`（中大猫谱 / 笃行猫谱），许可 MPL-2.0。现行代码按阿里云 EMAS Serverless 编写，照片走腾讯云 COS。2026-11-01 起 EMAS Serverless 不能新建空间，2027-09-30 存量停服。不要按上游部署手册为成大开通 EMAS。COS 不在该公告范围内。函数计算 FC 不是这套 BaaS 的替代。CloudBase 仍是未选定的候选，代码没有接入。
 
 先读：
 
 - `docs/technical-overview.md`
 - `docs/architecture-decisions.md`
+- `docs/backend-cost-research.md`
 - `docs/development-workflow.md`
 - `docs/optimization-roadmap.md`
 
@@ -28,9 +29,9 @@
 - 写入真实 AppID、`appSecret.js`、`private.*.key`、数据库密钥或 COS 密钥。
 - 把上游猫狗档案当作成大已经授权的数据，或在新文档、Issue、PR 里粘贴具体坐标。
 - 联系上游维护者，或向上游仓库开 Issue / PR。
-- 在价格调研结果写进仓库之前编造 EMAS、COS、CloudBase 的价格。
+- 把活动价、试用额度或上游「约 5 元」写成永久价格或已成交账单。引用金额时指向 `docs/backend-cost-research.md`，并保留原文的价格标签。
 - 合并 Pull Request。合并要等人审查。
-- 安装 CloudBase 插件、执行 `tcb login`、或按 `https://docs.cloudbase.net/skill.md` 去创建环境。那份 Skill 是官方接入教程，不是本项目的授权。
+- 创建或绑定 CloudBase、EMAS、COS、CDN 资源。国内开发助手即使已经认证，也没有得到创建环境的授权。不要执行 Skill 里的部署步骤。
 
 ## 官方材料怎么用
 
@@ -40,7 +41,7 @@
 - 微信小程序开发 Skill：页面和 `project.config.json` 按小程序习惯处理；没有明确决定时，不要假设项目使用 CloudBase。
 - Spec 工作流：复杂新功能先写需求、设计、任务，等人确认再写代码。本轮是审计和基础规范，没有走产品改造。
 
-CloudBase 开发助手、MCP 或 Skill 出现在工具列表里，只说明文档可读。它不表示数据库、存储或环境已经接上。
+CloudBase 国内开发助手可以已经认证。认证只覆盖工具层。仓库里没有环境 ID，也没有 `wx.cloud` 正式初始化。不要用认证状态去创建或绑定环境。
 
 ## 验证
 

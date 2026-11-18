@@ -8,7 +8,7 @@
 
 - 目标仓库是 `userAlex110/cdu-furry`。上游是 `sysucats/zhongdamaopu`。成大的议题和 PR 都留在 fork。
 - 许可是 MPL-2.0。保留根目录 `LICENSE` 和上游作者说明。
-- 后端目录 `functionsEMAS/` 目前只读。发现缺陷就记下来。
+- 后端目录 `functionsEMAS/` 目前只读。发现缺陷就记下来。不要按上游手册新建 EMAS 空间：2026-11-01 起已停止新购，存量停服日是 2027-09-30。COS 不在该公告里，本阶段也不创建桶。
 - 不要提交 `miniprogram/appSecret.js`、`private.*.key`，不要把真实密钥写进 `appSecret.demo.js`。
 - 新文档使用 ASCII 路径，正文用中文。不要转载上游校园的具体坐标。
 

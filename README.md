@@ -5,7 +5,8 @@
 - 许可仍是仓库根目录的 MPL-2.0。可以修改代码，同时保留该许可证和上游作者归属。下面「开发团队」一节属于上游项目。
 - 上游的猫狗档案、地图点位、AppID、EMAS 空间和对象存储，都不是本项目已经获授权的数据。新的文档、Issue 和对外材料不要转载具体坐标。
 - 本项目的问题记在本 fork。不要把成大的 Issue 开到上游仓库，也不要联系上游维护者代为部署或审核。
-- 接手请先读 `docs/technical-overview.md`、`docs/development-workflow.md`、`docs/optimization-roadmap.md`、`docs/architecture-decisions.md`。协作约定在 `CONTRIBUTING.md`，给 AI 的边界在 `AGENTS.md`。
+- 接手请先读 `docs/technical-overview.md`、`docs/architecture-decisions.md`、`docs/backend-cost-research.md`。协作约定在 `CONTRIBUTING.md`，给 AI 的边界在 `AGENTS.md`。
+- 下文保留的上游部署说明和「每月约 5 元」是历史原文。2026-11-01 起不能再为新项目开通 EMAS Serverless，2027-09-30 存量停服。那几节不是成大的施工单，也不是报价。COS 不受该公告影响。函数计算 FC 不能代替整套后端。
 
 下面保留上游 README 原文，方便对照功能说明和致谢。
 
